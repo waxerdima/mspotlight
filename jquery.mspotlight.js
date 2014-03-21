@@ -4,9 +4,9 @@
     _options = {},
     _defaults = {
       className: 'spotlight',
-      overflowHidden: true,
+      overflowHidden: false,
       closeClick: true,
-      scrollTopShift: 100
+      resetResize: true
     },
 
     _getOptions = function($element) {
@@ -49,6 +49,10 @@
         width: range.right - range.left,
         height: range.bottom - range.top
       };
+
+      if (block.width <= 0|| block.height <= 0) {
+        return false;
+      }
 
       $('body').append(
         $('<div>').css(block).addClass(_options.className).click(function() {
@@ -114,7 +118,10 @@
     },
 
     _create = function($container) {
-      var blockSize = [];
+      var 
+        blockSize = [],
+        body = document.body,
+        html = document.documentElement;
 
       if (_options.overflowHidden) {
         $('html').css({'overflow': 'hidden'});
@@ -135,12 +142,18 @@
 
       _screen = {
         top: 0,
-        bottom: Math.max($('body').outerHeight(true), $(window).height()),
+        bottom: Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight),
         left: 0,
         right: $('body').outerWidth(true)
       };
 
-      _fill(_screen, blockSize);      
+      _fill(_screen, blockSize);
+  
+      if (_options.resetResize) {
+        $(window).resize(function() {
+          _off();
+        });
+      }
     },
     
     //методы плагина
