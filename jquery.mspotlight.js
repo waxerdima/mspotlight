@@ -1,3 +1,18 @@
+/*
+ * Multi Spotlight v. 1.0.0
+ * (c) 2014 Dmitry Pletnev aka Waxer - https://github.com/waxerdima/mspotlight
+ * http://waxerdima.github.io/mspotlight/
+ *
+ * jQuery плагин для фокусировки внимания на нужных элементах страницы
+ *
+ * Опции: 
+ * className - имя класса для блоков отвечающих за затемнение  default: spotlight 
+ * overflowHidden - скрывать скролл или нет default: false
+ * closeClick - выключать спотлайт при клике на затемненную область default: true
+ * resetResize - выключать спотлайт при изменении размеров окна default: true
+ *
+ */
+
 (function($) {
   var 
     _screen = {},
@@ -156,9 +171,7 @@
       }
     },
     
-    //методы плагина
     _methods = {
-      // инициализация элементов плагина
       init: function(options) {  
         _options = {spotlightInit: true};
         $.extend(_options, _defaults, options); 
