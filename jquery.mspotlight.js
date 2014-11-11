@@ -34,6 +34,25 @@
       $element.data('options', $.extend($element.data('options'), item));
     },
 
+    _getOptions = function($element) {
+      return $element.data('options');
+    },
+
+    _setOptions = function($element, option, value) {
+      var item = {};
+      item[option] = value;
+      $element.data('options', $.extend($element.data('options'), item));
+    },
+
+    _getOptions = function($element) {
+      return $element.data('options');
+    },
+
+    _setOptions = function($element, option, value) {
+      var item = {};
+      item[option] = value;
+      $element.data('options', $.extend($element.data('options'), item));
+    },
     _off = function() {
       $('.' + _options.className).remove();
       if (_options.overflowHidden) {
