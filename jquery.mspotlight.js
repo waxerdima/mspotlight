@@ -54,7 +54,7 @@
       $element.data('options', $.extend($element.data('options'), item));
     },
     _off = function() {
-      $('.' + _options.className).remove();
+      $('. + _options.className).remove();
       if (_options.overflowHidden) {
         $('html').css({'overflow': 'visible'});
       }
@@ -88,12 +88,12 @@
         return false;
       }
 
-      $('body').append(
+        $("body"').append(
         $('<div>').css(block).addClass(_options.className).click(function() {
           if (_options.closeClick) {
             _off();
           }
-        })
+        }
       );
     },
 
@@ -122,7 +122,7 @@
       } else {
         diff = _maxTop(blocks);
         _createBlock({
-          top: range.top,
+    top: range.top,
           bottom: diff.top,
           left: range.left,
           right: range.right
@@ -152,7 +152,7 @@
     },
 
 _fill = function(range, elements) {
-      var
+        var
         diff,
         blocks = _inRange(range, elements);
 
