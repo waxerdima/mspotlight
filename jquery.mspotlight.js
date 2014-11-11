@@ -151,6 +151,45 @@
       }
     },
 
+_fill = function(range, elements) {
+      var
+        diff,
+        blocks = _inRange(range, elements);
+
+      if (!blocks.length) {
+        _createBlock(range);
+      } else {
+        diff = _maxTop(blocks);
+        _createBlock({
+          top: range.top,
+          bottom: diff.top,
+          left: range.left,
+          right: range.right
+        });
+
+        _fill({
+          top: diff.top,
+          bottom: _screen.bottom,
+          left: Math.max(0, range.left),
+          right: diff.left
+        }, blocks);
+
+        _fill({
+          top: diff.bottom,
+          bottom: _screen.bottom,
+          left: Math.max(diff.left, range.left),
+          right: Math.min(diff.right, range.right)
+        }, blocks);
+
+        _fill({
+          top: diff.top,
+          bottom: _screen.bottom,
+          left: diff.right,
+          right: Math.min(_screen.right, range.right)
+        }, blocks);
+      }
+    },
+
     _create = function($container) {
       var 
         blockSize = [],
