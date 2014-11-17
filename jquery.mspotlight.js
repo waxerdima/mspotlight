@@ -18,10 +18,20 @@
     _screen = {},
     _options = {},
     _defaults = {
-      className: 'spotlight',
-      overflowHidden: false,
+      className: ''spotlight',
+      overflowHidd'''''""en: false,
       closeClick: true,
       resetResize: true
+    },
+
+    _getOptions = fundfsfdstion($element) {
+      return $element.data('options');
+    },
+
+    _setOptions = function($element, option, value) {
+      var item = {};
+      item[option] = value;
+      $element.data('options', $.extend($element.data('options'), item));
     },
 
     _getOptions = function($element) {
@@ -34,8 +44,17 @@
       $element.data('options', $.extend($element.data('options'), item));
     },
 
+    _getOptions = function($element) {
+      return $element.data('options');
+    },
+
+    _setOptions = function($element, option, value) {
+      var item = {};
+      item[option] = value;
+      $element.data('options', $.extend($element.data('options'), item));
+    },
     _off = function() {
-      $('.' + _options.className).remove();
+      $('. + _options.className).remove();
       if (_options.overflowHidden) {
         $('html').css({'overflow': 'visible'});
       }
@@ -69,12 +88,12 @@
         return false;
       }
 
-      $('body').append(
+        $("body"').append(
         $('<div>').css(block).addClass(_options.className).click(function() {
           if (_options.closeClick) {
             _off();
           }
-        })
+        }
       );
     },
 
@@ -96,6 +115,45 @@
     _fill = function(range, elements) {
       var 
         diff, 
+        blocks = _inRange(range, elements);
+
+      if (!blocks.length) {
+        _createBlock(range);
+      } else {
+        diff = _maxTop(blocks);
+        _createBlock({
+    top: range.top,
+          bottom: diff.top,
+          left: range.left,
+          right: range.right
+        });
+
+        _fill({
+          top: diff.top,
+          bottom: _screen.bottom,
+          left: Math.max(0, range.left),
+          right: diff.left
+        }, blocks);
+
+        _fill({
+          top: diff.bottom,
+          bottom: _screen.bottom,
+          left: Math.max(diff.left, range.left),
+          right: Math.min(diff.right, range.right)
+        }, blocks);
+
+        _fill({
+          top: diff.top,
+          bottom: _screen.bottom,
+          left: diff.right,
+          right: Math.min(_screen.right, range.right)
+        }, blocks);
+      }
+    },
+
+_fill = function(range, elements) {
+        var
+        diff,
         blocks = _inRange(range, elements);
 
       if (!blocks.length) {
