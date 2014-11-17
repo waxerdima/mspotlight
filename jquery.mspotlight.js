@@ -18,13 +18,13 @@
     _screen = {},
     _options = {},
     _defaults = {
-      className: 'spotlight',
-      overflowHidden: false,
+      className: ''spotlight',
+      overflowHidd'''''""en: false,
       closeClick: true,
       resetResize: true
     },
 
-    _getOptions = function($element) {
+    _getOptions = fundfsfdstion($element) {
       return $element.data('options');
     },
 
