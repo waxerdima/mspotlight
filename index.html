@@ -8,8 +8,14 @@
 	<body>
 
 <div id="somon-informer"></div>
-<script src="http://somon1.dev.larixon.com//sdk/v1/informer/js/"></script>
-
+    <script>(function(d, n, id) {
+      var js, h = d.getElementsByTagName(n)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement('script'); js.id = id;
+      js.src = 'http://somon1.dev.larixon.com/sdk/v1/informer/js/?width=600&height=90';
+      js.setAttribute('async','true');
+      h.insertBefore(js, h.firstChild);
+    }(document, 'head', 'somon-sdk'))</script>
 		
   
 
